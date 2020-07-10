@@ -1,5 +1,5 @@
 ### Hi there 👋
-My name is Mariana and I'm a data analyst in a grayard company and I'm a production engineering student.
+My name is Mariana and I'm a data analyst in a company thats provide funeral goods and services as well as cemetery property and services and I'm a production engineering student.
 
 Things about myself:
 
