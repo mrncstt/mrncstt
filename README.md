@@ -7,7 +7,7 @@
 
 - 📖 I’m currently studying: [Data Analyst with SQL Server](https://www.datacamp.com/tracks/data-analyst-with-sql-server), [Data Analyst with Python](https://www.datacamp.com/tracks/data-analyst-with-python) and [QlikView Your Business](https://www.wiley.com/en-us/QlikView+Your+Business%3A+An+Expert+Guide+to+Business+Discovery+with+QlikView+and+Qlik+Sense-p-9781118949559);
 - 💬 Ask me about: music, HQ or data literacy;
-- ⚡ Fun fact: I have a happy socks collection .
+- ⚡ Fun fact: I have a happy socks collection.
 
 
 #### My Digital Garden 🌱
