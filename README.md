@@ -14,6 +14,7 @@
 
 
  - 1th [Santander Data Challenge Hackathon](https://www.datachallenge.com.br/resultado/)
+ - 2th [UFRN Data Science Competition 2019](https://marcusnunes.me/posts/resultados-da-competicao-de-ciencia-de-dados-da-ufrn-2019/)
 
 
 
