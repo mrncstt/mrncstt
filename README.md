@@ -9,6 +9,13 @@
 - 💬 Ask me about: music, HQ or data literacy;
 - ⚡ Fun fact: I have a happy socks collection.
 
+### Achievements 🥇
+
+
+
+ - 1th [Santander Data Challenge Hackathon](https://www.datachallenge.com.br/resultado/)
+
+
 
 #### My Digital Garden 🌱
 
