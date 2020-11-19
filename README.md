@@ -1,6 +1,6 @@
 ### Hello, I'm Mariana! 👋
 
-- 💼 I'm a data analyst in a company thats provide funeral goods and services as well as cemetery property and services; 
+- 💼 I'm a data analyst; 
 - 📈 I'm a production engineering student.
 
 #### Things about myself:
