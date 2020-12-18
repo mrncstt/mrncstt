@@ -1,7 +1,7 @@
 ### Hello, I'm Mariana! 👋
 
 - 💼 I'm a data analyst; 
-- 📈 I'm a production engineering student.
+- 📈 I have done graduation in B.E. Production Engineering from the Federal University of Rio Grande do Norte (Brazil).
 
 #### Things about myself:
 
