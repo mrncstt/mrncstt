@@ -5,17 +5,16 @@
 
 #### Things about myself:
 
-- 📖 I’m currently studying: [Data Science](https://www.digitalhouse.com/br/curso/data-science), [Data Analyst with SQL Server](https://www.datacamp.com/tracks/data-analyst-with-sql-server), [Data Analyst with Python](https://www.datacamp.com/tracks/data-analyst-with-python) and [Optimizing DAX](https://portal.enterprisedna.co/courses/enrolled/958368);
 - 💬 Ask me about: music, HQ or data literacy;
 - ⚡ Fun fact: I have a happy socks collection.
 
-### Achievements 🥇
+#### Recent blog posts
 
-
-
- - 1th [Santander Data Challenge Hackathon](https://www.datachallenge.com.br/resultado/)
- - 2th [UFRN Data Science Competition 2019](https://marcusnunes.me/posts/resultados-da-competicao-de-ciencia-de-dados-da-ufrn-2019/)
-
+<!-- BLOG-POST-LIST:START -->
+- [Improve your Business Intelligence skills: Influencers to follow who share content about Tableau, Qlik and Power BI](https://mrncstt.github.io/posts/bi_people_follow/)
+- [How was my trip to Buenos Aires](https://mrncstt.github.io/posts/tips_buenos_aires/)
+- [What I learned teaching my first course]([https://fguisso.github.io/posts/hacktoberfest-owasp/](https://mrncstt.github.io/posts/primeirocurso/))
+<!-- BLOG-POST-LIST:END -->
 
 
 #### My Digital Garden 🌱
