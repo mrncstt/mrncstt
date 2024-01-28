@@ -11,6 +11,7 @@
 #### Recent blog posts
 
 <!-- BLOG-POST-LIST:START -->
+- [#MakeoverMonday 2024 Week 4 - Forbes Highest Paid Athletes in 2023](https://public.tableau.com/app/profile/mrncstt/viz/MakeoverMonday2024Week4-ForbesHighestPaidAthletesin2023/MakeOverMonday-WaffleChart)
 - [Improve your Business Intelligence skills: Influencers to follow who share content about Tableau, Qlik and Power BI](https://mrncstt.github.io/posts/bi_people_follow/)
 - [How was my trip to Buenos Aires](https://mrncstt.github.io/posts/tips_buenos_aires/)
 - [What I learned teaching my first course]([https://fguisso.github.io/posts/hacktoberfest-owasp/](https://mrncstt.github.io/posts/primeirocurso/))
