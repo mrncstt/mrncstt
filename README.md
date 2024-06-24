@@ -1,4 +1,5 @@
-### Hello, I'm Mariana! 👋
+<!-- Heading -->
+<h3 align="center"><img src = "https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width = 30px> Hi there! I'm Mariana</h3>
 
 - 💼 I'm a data analytics enthusiastic; 
 - 📈 I have done graduation in B.E. Production Engineering from the Federal University of Rio Grande do Norte (Brazil).
@@ -6,7 +7,6 @@
 #### Things about myself:
 
 - 💬 Ask me about: music, HQ or data literacy;
-- ⚡ Fun fact: I have a happy socks collection.
 
 #### Recent blog posts
 
