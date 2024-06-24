@@ -20,7 +20,7 @@
 
 #### My Digital Garden 🌱
 
-I write regular blog posts, most of which you will find on my personal website [mrncstt.github.io](mrncstt.github.io) and you can to reach me in those social medias: 
+I try to write regular blog posts, most of which you will find on my personal website [mrncstt.github.io](mrncstt.github.io) and you can to reach me in those social medias: 
 
 <p align='center'>
 <a href="https://dev.to/mrncstt"><img height="30" src="https://raw.githubusercontent.com/WaylonWalker/WaylonWalker/main/icon/dev.png"></a>&nbsp;&nbsp;
