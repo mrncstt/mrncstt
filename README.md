@@ -1,28 +1,73 @@
 <!-- Heading -->
-<h3 align="center"><img src = "https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width = 30px> Hi there! I'm Mariana</h3>
+<h3 align="center"><img src = "https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width = 30px> Hi there!</h3>
 
-- 💼 I'm a data analytics enthusiastic; 
-- 📈 I have done graduation in B.E. Production Engineering from the Federal University of Rio Grande do Norte (Brazil).
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, ArrayType
 
-#### Things about myself:
+spark = SparkSession.builder.appName("ProfileApp").getOrCreate()
 
-- 💬 Ask me about: music, HQ or data literacy;
+schema = StructType([
+    StructField("name", StringType(), True),
+    StructField("occupation", StringType(), True),
+    StructField("education", StringType(), True),
+    StructField("interests", ArrayType(StringType()), True),
+    StructField("blog_posts", ArrayType(StringType()), True),
+    StructField("digital_garden", StringType(), True),
+    StructField("contact_info", StringType(), True),
+    StructField("linkedin", StringType(), True),
+    StructField("dev_to", StringType(), True),
+    StructField("medium", StringType(), True),
+    StructField("blog_links", ArrayType(StringType()), True)
+])
 
-#### Recent blog posts
+data = [(
+    "Mariana",
+    "Data analytics enthusiast",
+    "B.E. Production Engineering from the Federal University of Rio Grande do Norte (Brazil)",
+    ["music", "HQ", "data literacy"],
+    [
+        "Automating LinkedIn post extraction using Selenium and BeautifulSoup",
+        "Seeking insights from a recording using Google Cloud Speech-to-text, Google Colab and ChatGPT",
+        "Enhance Your Business Intelligence Skills: Influencers to Follow for Tableau, Qlik, and Power BI Content",
+        "How was my trip to Buenos Aires",
+        "Make Over Monday - Top 10 Countries in Military Spending"
+    ],
+    "I try to write regular blog posts, most of which you will find on my personal website mrncstt.github.io",
+    "You can reach me on social media.",
+    "https://www.linkedin.com/in/mrncstt",
+    "https://dev.to/mrncstt",
+    "https://medium.com/@mrncstt",
+    [
+        "https://mrncstt.github.io/posts/automatinglinkedin_post_extraction/",
+        "https://mrncstt.github.io/posts/seeking_insights_from_a_recording_using_google_cloud_speech_to_text_google_colab_and_chatgpt/",
+        "https://mrncstt.github.io/posts/bi_people_follow/",
+        "https://mrncstt.github.io/posts/tips_buenos_aires/",
+        "https://mrncstt.github.io/posts/make_over_monday_2022_w_35/"
+    ]
+)]
 
-<!-- BLOG-POST-LIST:START -->
-- [#MakeoverMonday 2024 Week 4 - Forbes Highest Paid Athletes in 2023](https://public.tableau.com/app/profile/mrncstt/viz/MakeoverMonday2024Week4-ForbesHighestPaidAthletesin2023/MakeOverMonday-WaffleChart)
-- [Improve your Business Intelligence skills: Influencers to follow who share content about Tableau, Qlik and Power BI](https://mrncstt.github.io/posts/bi_people_follow/)
-- [How was my trip to Buenos Aires](https://mrncstt.github.io/posts/tips_buenos_aires/)
-- [What I learned teaching my first course]([https://fguisso.github.io/posts/hacktoberfest-owasp/](https://mrncstt.github.io/posts/primeirocurso/))
-<!-- BLOG-POST-LIST:END -->
+df = spark.createDataFrame(data, schema=schema)
 
+pandas_df = df.toPandas()
 
-#### My Digital Garden 🌱
+for index, row in pandas_df.iterrows():
+    print(f"Hi there! I'm {row['name']}")
+    print(f"💼 I'm a {row['occupation']};")
+    print(f"📈 I have done graduation in {row['education']}.")
+    print("Things about myself:")
+    print(f"💬 Ask me about: {', '.join(row['interests'])};")
+    print("\nRecent blog posts:")
+    for post, link in zip(row['blog_posts'], row['blog_links']):
+        print(f"  - {post} - {link}")
+    print(f"\nMy Digital Garden 🌱")
+    print(f"{row['digital_garden']}")
+    print(f"\n{row['contact_info']}")
+    print(f"LinkedIn: {row['linkedin']}")
+    print(f"Dev.to: {row['dev_to']}")
+    print(f"Medium: {row['medium']}")
+    print("\n" + "="*40 + "\n")
 
-I try to write regular blog posts, most of which you will find on my personal website [mrncstt.github.io](mrncstt.github.io) and you can to reach me in those social medias: 
+spark.stop()
 
-<p align='center'>
-<a href="https://dev.to/mrncstt"><img height="30" src="https://raw.githubusercontent.com/WaylonWalker/WaylonWalker/main/icon/dev.png"></a>&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/mrncst/"><img height="30" src="https://github.com/WaylonWalker/WaylonWalker/blob/main/icon/linkedin.png?raw=true"></a>
-</p>
+````
