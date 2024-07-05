@@ -67,9 +67,7 @@ for index, row in pandas_df.iterrows():
     print(f"Dev.to: {row['dev_to']}")
     print(f"Medium: {row['medium']}")
     print("\n" + "="*40 + "\n")
-
 spark.stop()
-
 ````
 
 
