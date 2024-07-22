@@ -68,7 +68,4 @@ for index, row in pandas_df.iterrows():
     print(f"Medium: {row['medium']}")
     print("\n" + "="*40 + "\n")
 spark.stop()
-````
-
-
-![](https://github-readme-streak-stats.herokuapp.com/?user=mrncstt&theme=dark)
+```
