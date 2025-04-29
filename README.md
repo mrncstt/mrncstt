@@ -5,30 +5,33 @@
 from pyspark.sql import SparkSession, functions as F
 from pyspark.sql.types import StructType, StructField, StringType, ArrayType
 
-class ProfileETL:
-    def __init__(self, app_name="ProfileApp"):
+
+class Profile:
+    def __init__(self, app_name="Profile"):
         self.spark = SparkSession.builder.appName(app_name).getOrCreate()
+
     def load(self, data, schema):
-        self.profiles_df = self.spark.createDataFrame(data, schema=schema)
+        self.profile = self.spark.createDataFrame(data, schema=schema)
+
     def explode_blog_posts(self):
-        assert hasattr(self, "profiles_df")
-        self.blog_df = (
-            self.profiles_df
-            .select("name", F.explode(F.arrays_zip("blog_posts", "blog_links")).alias("blog"))
-            .select(
-                "name",
-                F.col("blog.blog_posts").alias("title"),
-                F.col("blog.blog_links").alias("url")
-            )
+        self.blog = (
+            self.profile
+              .select("name", F.explode(F.arrays_zip("blog_posts", "blog_links")).alias("blog"))
+              .select(
+                  "name",
+                  F.col("blog.blog_posts").alias("title"),
+                  F.col("blog.blog_links").alias("url")
+              )
         )
-        self.profiles_df = self.profiles_df.drop("blog_posts", "blog_links")
-    def display(self, truncate=False):
-        assert all(hasattr(self, c) for c in ("profiles_df", "blog_df"))
-        fallback = lambda df: df.show(truncate=truncate)
-        globals().get("display", fallback)(self.profiles_df)
-        globals().get("display", fallback)(self.blog_df)
+        self.profile = self.profile.drop("blog_posts", "blog_links")
+
+    def display(self):
+        display(self.profile)
+        display(self.blog)
+
     def stop(self):
         self.spark.stop()
+
 
 schema = StructType([
     StructField("name", StringType()),
@@ -70,10 +73,10 @@ data = [(
     ],
 )]
 
-etl = ProfileETL()
+etl = Profile()
 etl.load(data, schema)
 etl.explode_blog_posts()
-etl.display(truncate=False)
+etl.display()
 etl.stop()
 
 ```
