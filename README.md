@@ -5,77 +5,109 @@ from pyspark.sql import SparkSession, functions as F
 from pyspark.sql.types import StructType, StructField, StringType, ArrayType
 
 
-class Profile:
-    def __init__(self, app_name="Profile"):
+class ProfilePipeline:
+    def __init__(self, app_name="mrncstt-profile"):
         self.spark = SparkSession.builder.appName(app_name).getOrCreate()
 
-    def load(self, data, schema):
-        self.profile = self.spark.createDataFrame(data, schema=schema)
+    def build_profile(self):
+        schema = StructType([
+            StructField("name", StringType()),
+            StructField("role", StringType()),
+            StructField("education", StringType()),
+            StructField("interests", ArrayType(StringType())),
+            StructField("stack", ArrayType(StringType())),
+            StructField("digital_garden", StringType()),
+            StructField("contact", StringType()),
+        ])
 
-    def explode_blog_posts(self):
-        self.blog = (
-            self.profile
-              .select("name", F.explode(F.arrays_zip("blog_posts", "blog_links")).alias("blog"))
-              .select(
-                  "name",
-                  F.col("blog.blog_posts").alias("title"),
-                  F.col("blog.blog_links").alias("url")
-              )
+        data = [(
+            "Mariana Costa",
+            "Data Engineer",
+            "B.E. Production Engineering - UFRN (Brazil)",
+            ["music", "HQ", "data literacy", "french"],
+            ["PySpark", "Databricks", "SQL", "Python", "Power BI", "Tableau", "Qlik"],
+            "mrncstt.github.io",
+            "linkedin.com/in/mrncstt",
+        )]
+
+        self.df_profile = (
+            self.spark.createDataFrame(data, schema=schema)
+            .withColumn("interests", F.array_join("interests", ", "))
+            .withColumn("stack", F.array_join("stack", " | "))
+            .withColumn("updated_at", F.current_date())
         )
-        self.profile = self.profile.drop("blog_posts", "blog_links")
+
+    def build_blog(self):
+        schema = StructType([
+            StructField("title", StringType()),
+            StructField("url", StringType()),
+        ])
+
+        data = [
+            ("Export your LinkedIn saved posts with Selenium and Beautiful Soup",
+             "https://mrncstt.github.io/posts/export_linkedin_saved_posts_selenium_bs4/"),
+            ("Seeking insights from a recording using Google Cloud Speech-to-Text, Google Colab and ChatGPT",
+             "https://mrncstt.github.io/posts/seeking_insights_from_a_recording_using_google_cloud_speech_to_text_google_colab_and_chatgpt/"),
+            ("Enhance your BI skills: people to follow for Tableau, Qlik, and Power BI",
+             "https://mrncstt.github.io/posts/bi_people_follow/"),
+            ("Buenos Aires for 33 days: a practical guide",
+             "https://mrncstt.github.io/posts/tips_buenos_aires/"),
+            ("Make Over Monday 2022 W/35",
+             "https://mrncstt.github.io/posts/make_over_monday_2022_w_35/"),
+            ("How do I keep myself updated about data, product management and productivity",
+             "https://mrncstt.github.io/posts/stay-updated-data-product-management-productivity/"),
+            ("Podcasts to learn French",
+             "https://mrncstt.github.io/posts/podcasts_French/"),
+            ("What I learned as a hackathon mentor",
+             "https://mrncstt.github.io/posts/What_I_learned_from_being_a_mentor/"),
+            ("Turning memorial comments into a Qlik word cloud",
+             "https://mrncstt.github.io/posts/Word_Cloud_with_Qlik/"),
+            ("What I learned from teaching my first course",
+             "https://mrncstt.github.io/posts/What_I_Learned_from_Teaching/"),
+        ]
+
+        self.df_blog = (
+            self.spark.createDataFrame(data, schema=schema)
+            .withColumn("category", F.when(F.lower("title").contains("french"), "languages")
+                .when(F.lower("title").contains("bi") | F.lower("title").contains("tableau")
+                      | F.lower("title").contains("qlik") | F.lower("title").contains("power bi"), "data viz")
+                .when(F.lower("title").contains("selenium") | F.lower("title").contains("speech-to-text"), "tech")
+                .when(F.lower("title").contains("mentor") | F.lower("title").contains("teaching"), "career")
+                .otherwise("misc"))
+        )
 
     def display(self):
-        display(self.profile)
-        display(self.blog)
+        display(self.df_profile)
+        display(self.df_blog)
 
     def stop(self):
         self.spark.stop()
 
 
-schema = StructType([
-    StructField("name", StringType()),
-    StructField("occupation", StringType()),
-    StructField("education", StringType()),
-    StructField("interests", ArrayType(StringType())),
-    StructField("blog_posts", ArrayType(StringType())),
-    StructField("digital_garden", StringType()),
-    StructField("contact_info", StringType()),
-    StructField("linkedin", StringType()),
-    StructField("dev_to", StringType()),
-    StructField("medium", StringType()),
-    StructField("blog_links", ArrayType(StringType())),
-])
-
-data = [(
-    "Mariana",
-    "Data analytics enthusiast",
-    "B.E. Production Engineering — Federal University of Rio Grande do Norte (Brazil)",
-    ["music", "HQ", "data literacy"],
-    [
-        "Automating LinkedIn post extraction using Selenium and BeautifulSoup",
-        "Seeking insights from a recording using Google Cloud Speech-to-Text, Google Colab and ChatGPT",
-        "Enhance Your Business Intelligence Skills: Influencers to Follow for Tableau, Qlik, and Power BI Content",
-        "How was my trip to Buenos Aires",
-        "Make Over Monday – Top 10 Countries in Military Spending",
-    ],
-    "I try to write regular blog posts; most of them live on my site mrncstt.github.io",
-    "You can reach me on social media.",
-    "https://www.linkedin.com/in/mrncstt",
-    "https://dev.to/mrncstt",
-    "https://medium.com/@mrncstt",
-    [
-        "https://mrncstt.github.io/posts/automatinglinkedin_post_extraction/",
-        "https://mrncstt.github.io/posts/seeking_insights_from_a_recording_using_google_cloud_speech_to_text_google_colab_and_chatgpt/",
-        "https://mrncstt.github.io/posts/bi_people_follow/",
-        "https://mrncstt.github.io/posts/tips_buenos_aires/",
-        "https://mrncstt.github.io/posts/make_over_monday_2022_w_35/",
-    ],
-)]
-
-etl = Profile()
-etl.load(data, schema)
-etl.explode_blog_posts()
-etl.display()
-etl.stop()
-
+pipeline = ProfilePipeline()
+pipeline.build_profile()
+pipeline.build_blog()
+pipeline.display()
+pipeline.stop()
 ```
+
+### `display(pipeline.df_profile)`
+
+| name | role | education | interests | stack | digital_garden | contact | updated_at |
+|------|------|-----------|-----------|-------|----------------|---------|------------|
+| Mariana Costa | Data Engineer | B.E. Production Engineering - UFRN (Brazil) | music, HQ, data literacy, french | PySpark \| Databricks \| SQL \| Python \| Power BI \| Tableau \| Qlik | [mrncstt.github.io](https://mrncstt.github.io) | [linkedin.com/in/mrncstt](https://www.linkedin.com/in/mrncstt) | 2026-02-06 |
+
+### `display(pipeline.df_blog)`
+
+| title | url | category |
+|-------|-----|----------|
+| Export your LinkedIn saved posts with Selenium and Beautiful Soup | [link](https://mrncstt.github.io/posts/export_linkedin_saved_posts_selenium_bs4/) | tech |
+| Seeking insights from a recording using Google Cloud Speech-to-Text, Google Colab and ChatGPT | [link](https://mrncstt.github.io/posts/seeking_insights_from_a_recording_using_google_cloud_speech_to_text_google_colab_and_chatgpt/) | tech |
+| Enhance your BI skills: people to follow for Tableau, Qlik, and Power BI | [link](https://mrncstt.github.io/posts/bi_people_follow/) | data viz |
+| Buenos Aires for 33 days: a practical guide | [link](https://mrncstt.github.io/posts/tips_buenos_aires/) | misc |
+| Make Over Monday 2022 W/35 | [link](https://mrncstt.github.io/posts/make_over_monday_2022_w_35/) | misc |
+| How do I keep myself updated about data, product management and productivity | [link](https://mrncstt.github.io/posts/stay-updated-data-product-management-productivity/) | misc |
+| Podcasts to learn French | [link](https://mrncstt.github.io/posts/podcasts_French/) | languages |
+| What I learned as a hackathon mentor | [link](https://mrncstt.github.io/posts/What_I_learned_from_being_a_mentor/) | career |
+| Turning memorial comments into a Qlik word cloud | [link](https://mrncstt.github.io/posts/Word_Cloud_with_Qlik/) | data viz |
+| What I learned from teaching my first course | [link](https://mrncstt.github.io/posts/What_I_Learned_from_Teaching/) | career |
