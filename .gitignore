@@ -6,3 +6,4 @@
 *.sqlite
 *.db
 __pycache__/
+CLAUDE.md
