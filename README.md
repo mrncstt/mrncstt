@@ -56,7 +56,7 @@ pipeline.stop()
 #### Latest from the blog
 
 <!-- BLOG-POST:START -->
-[Contributing to LanceDB: from Python dict to SQL struct](https://mrncstt.github.io/posts/contributing-dict-to-sql-struct-lancedb/)
+[Accessibility Service não era pra isso](https://mrncstt.github.io/posts/accessibility-service-nao-era-pra-isso/)
 <!-- BLOG-POST:END -->
 
 ---
