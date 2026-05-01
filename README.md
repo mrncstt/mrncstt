@@ -56,7 +56,7 @@ pipeline.stop()
 #### Latest from the blog
 
 <!-- BLOG-POST:START -->
-[Accessibility Service não era pra isso](https://mrncstt.github.io/posts/accessibility-service-nao-era-pra-isso/)
+[Accessibility Service wasn't made for this](https://mrncstt.github.io/posts/accessibility-service-nao-era-pra-isso/)
 <!-- BLOG-POST:END -->
 
 ---
