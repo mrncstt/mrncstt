@@ -57,7 +57,7 @@ process_pipeline()
 
 | name | role | education | interests | stack | updated_at |
 |------|------|-----------|-----------|-------|------------|
-| Mariana Costa | data and more stuff | B.E. Production Engineering - UFRN (Brazil) | music, HQ, data literacy, french | PySpark \| Databricks \| Terraform \| SQL \| Python | 2026-03-06 |
+| Mariana Costa | data and more stuff | B.E. Production Engineering - UFRN (Brazil) | music, HQ, data literacy, french | PySpark \| Databricks \| Terraform \| SQL \| Python | 2026-05-04 |
 
 ---
 
