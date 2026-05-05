@@ -64,7 +64,7 @@ process_pipeline()
 #### Latest from the blog
 
 <!-- BLOG-POST:START -->
-[Accessibility Service wasn't made for this](https://mrncstt.github.io/posts/accessibility-service-nao-era-pra-isso/)
+[Accessibility Service wasn't made for this](https://mrncstt.github.io/posts/accessibility-service-not-for-this/)
 <!-- BLOG-POST:END -->
 
 ---
