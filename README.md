@@ -10,7 +10,7 @@ class ProfilePipeline:
         name="Mariana Costa",
         role="data and more stuff",
         education="B.E. Production Engineering - UFRN (Brazil)",
-        interests=("music", "HQ", "data literacy", "french"),
+        interests=("music", "HQ", "data literacy"),
         stack=("PySpark", "Databricks", "Terraform", "SQL", "Python"),
         app_name="mrncstt-profile",
     ):
@@ -57,7 +57,7 @@ process_pipeline()
 
 | name | role | education | interests | stack | updated_at |
 |------|------|-----------|-----------|-------|------------|
-| Mariana Costa | data and more stuff | B.E. Production Engineering - UFRN (Brazil) | music, HQ, data literacy, french | PySpark \| Databricks \| Terraform \| SQL \| Python | 2026-05-04 |
+| Mariana Costa | data and more stuff | B.E. Production Engineering - UFRN (Brazil) | music, HQ, data literacy | PySpark \| Databricks \| Terraform \| SQL \| Python | 2026-05-04 |
 
 ---
 
